@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Users, Star, Tag, Upload, Download, LogOut, ChevronDown, Search, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
@@ -146,6 +146,21 @@ export function Layout({ children }: LayoutProps) {
   const initials = user?.name
     ? user.name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)
     : 'U';
+
+  useEffect(() => {
+    // Push an initial state to trap the back button
+    window.history.pushState(null, '', window.location.href);
+
+    const handlePopState = () => {
+      // Whenever the user clicks back, push the state again to trap them
+      window.history.pushState(null, '', window.location.href);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-[var(--bg-page)] text-[var(--text-primary)]">
