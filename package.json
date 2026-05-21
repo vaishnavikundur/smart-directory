@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit --project frontend/tsconfig.json && tsc --noEmit --project backend/tsconfig.json"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "playwright": "^1.60.0"
   },
   "dependencies": {
     "puppeteer": "^25.0.4"
