@@ -163,9 +163,9 @@ export function ContactCard({ contact, index }: ContactCardProps) {
         </div>
 
         {/* Tags */}
-        {contact.tags.length > 0 && (
+        {(contact.tags?.length ?? 0) > 0 && (
           <div className="flex flex-wrap gap-2 mt-2">
-            {contact.tags.map((tag) => (
+            {contact.tags?.map((tag) => (
               <span
                 key={tag}
                 onClick={(e) => {
