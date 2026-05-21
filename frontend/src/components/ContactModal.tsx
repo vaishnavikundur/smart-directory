@@ -191,7 +191,7 @@ export const ContactModal: React.FC = () => {
                   <input
                     type="text"
                     {...register('name')}
-                    placeholder="e.g. Tim Cook"
+                    placeholder="Enter name"
                     onBlur={(e) => checkDuplicateField('name', e.target.value)}
                     className="input-field pl-11"
                   />
@@ -216,7 +216,7 @@ export const ContactModal: React.FC = () => {
                     <input
                       type="text"
                       {...register('email')}
-                      placeholder="tim@apple.com"
+                      placeholder="Enter email"
                       onBlur={(e) => checkDuplicateField('email', e.target.value)}
                       className="input-field pl-11"
                     />
@@ -235,7 +235,7 @@ export const ContactModal: React.FC = () => {
                     <input
                       type="text"
                       {...register('phone')}
-                      placeholder="+1 (800) 692-7753"
+                      placeholder="Enter phone number"
                       onBlur={(e) => checkDuplicateField('phone', e.target.value)}
                       className="input-field pl-11"
                     />
@@ -260,7 +260,7 @@ export const ContactModal: React.FC = () => {
                   <input
                     type="text"
                     {...register('company')}
-                    placeholder="Apple Inc."
+                    placeholder="Enter company"
                     className="input-field pl-11"
                   />
                 </div>
@@ -272,7 +272,7 @@ export const ContactModal: React.FC = () => {
                   <MapPin className="absolute left-3.5 top-3.5 w-5 h-5 text-[var(--text-secondary)]" />
                   <textarea
                     {...register('address')}
-                    placeholder="1 Apple Park Way, Cupertino, CA"
+                    placeholder="Enter address"
                     rows={2}
                     className="input-field pl-11 resize-none"
                   />
