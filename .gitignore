@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+coverage/
+test-results/
+
+# Debug/test artifacts
+*.png
+error_dom.html
+puppeteer_test.js
+test_api.js
+test_duplicate.js
+test_render.js
+test_tags.js
+mongodb_data/
+
+# Capacitor build
+frontend/android/

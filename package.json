@@ -1,0 +1,24 @@
+{
+  "name": "contact-manager",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "start": "npm run start --workspace=backend",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit --project frontend/tsconfig.json && tsc --noEmit --project backend/tsconfig.json"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "puppeteer": "^25.0.4"
+  }
+}
