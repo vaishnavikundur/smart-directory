@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, Loader2, Zap, ArrowRight, ShieldAlert } from 'lucide-react';
 import { authApi } from '@/api/auth';
-import { useAuthStore } from '@/stores/authStore';
 import type { RegisterData } from '@/types';
 
 const registerSchema = z.object({
@@ -17,7 +16,6 @@ const registerSchema = z.object({
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const setAuth = useAuthStore((state) => state.setAuth);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,9 +36,9 @@ export default function RegisterPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await authApi.register(data);
-      setAuth(response.user, response.accessToken);
-      navigate('/');
+      await authApi.register(data);
+      alert("registration successfull now login again ");
+      navigate('/login');
     } catch (err: any) {
       console.error('Registration error:', err);
       setError(
