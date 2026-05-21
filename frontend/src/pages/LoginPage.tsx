@@ -38,7 +38,7 @@ export default function LoginPage() {
     try {
       const response = await authApi.login(data);
       setAuth(response.user, response.accessToken);
-      navigate('/');
+      navigate('/', { replace: true });
     } catch (err: any) {
       console.error('Login error:', err);
       setError(

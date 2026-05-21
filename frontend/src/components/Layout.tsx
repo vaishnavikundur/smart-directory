@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Users, Star, Tag, Upload, Download, LogOut, ChevronDown, Search, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { useAuthStore } from '@/stores/authStore';
@@ -130,6 +131,8 @@ export function Layout({ children }: LayoutProps) {
 
   const allTags = ['Family', 'Work', 'Friends', 'VIP', 'Business', 'Personal'];
 
+  const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
       await authApi.logout();
@@ -137,6 +140,7 @@ export function Layout({ children }: LayoutProps) {
       // Continue even if API fails
     }
     logoutStore();
+    navigate('/login', { replace: true });
   };
 
   const initials = user?.name
