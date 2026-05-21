@@ -44,7 +44,7 @@ export default function RegisterPage() {
     } catch (err: any) {
       console.error('Registration error:', err);
       setError(
-        err.response?.data?.message || 
+        err.response?.data?.error || err.response?.data?.message || 
         'Failed to create account. Email might already be in use.'
       );
     } finally {
@@ -107,7 +107,7 @@ export default function RegisterPage() {
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
                       : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
                   }`}
-                  placeholder="John Doe"
+                  placeholder="Enter your name"
                   disabled={isLoading}
                 />
               </div>
@@ -135,7 +135,7 @@ export default function RegisterPage() {
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
                       : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
                   }`}
-                  placeholder="john@example.com"
+                  placeholder="Enter your email"
                   disabled={isLoading}
                 />
               </div>
@@ -163,7 +163,7 @@ export default function RegisterPage() {
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
                       : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
                   }`}
-                  placeholder="••••••••"
+                  placeholder="Enter your password"
                   disabled={isLoading}
                 />
               </div>

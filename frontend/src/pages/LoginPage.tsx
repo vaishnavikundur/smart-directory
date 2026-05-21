@@ -42,7 +42,7 @@ export default function LoginPage() {
     } catch (err: any) {
       console.error('Login error:', err);
       setError(
-        err.response?.data?.message || 
+        err.response?.data?.error || err.response?.data?.message || 
         'Failed to authenticate. Please check your credentials.'
       );
     } finally {
@@ -106,7 +106,7 @@ export default function LoginPage() {
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
                       : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
                   }`}
-                  placeholder="name@example.com"
+                  placeholder="Enter your email"
                   disabled={isLoading}
                 />
               </div>
@@ -134,7 +134,7 @@ export default function LoginPage() {
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
                       : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
                   }`}
-                  placeholder="••••••••"
+                  placeholder="Enter your password"
                   disabled={isLoading}
                 />
               </div>
