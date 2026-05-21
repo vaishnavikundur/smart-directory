@@ -68,6 +68,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       accessToken,
     });
   } catch (error) {
+    console.error('Registration backend error:', error);
     next(error);
   }
 }
@@ -116,6 +117,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       accessToken,
     });
   } catch (error) {
+    console.error('Login backend error:', error);
     next(error);
   }
 }

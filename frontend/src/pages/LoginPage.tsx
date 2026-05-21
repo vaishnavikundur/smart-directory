@@ -43,7 +43,7 @@ export default function LoginPage() {
       console.error('Login error:', err);
       setError(
         err.response?.data?.error || err.response?.data?.message || 
-        'Failed to authenticate. Please check your credentials.'
+        'Login failed. Please try again.'
       );
     } finally {
       setIsLoading(false);

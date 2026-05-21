@@ -45,7 +45,7 @@ export default function RegisterPage() {
       console.error('Registration error:', err);
       setError(
         err.response?.data?.error || err.response?.data?.message || 
-        'Failed to create account. Email might already be in use.'
+        'Registration failed. Please try again.'
       );
     } finally {
       setIsLoading(false);
@@ -107,7 +107,7 @@ export default function RegisterPage() {
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
                       : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
                   }`}
-                  placeholder="Enter your name"
+                  placeholder="Enter your full name"
                   disabled={isLoading}
                 />
               </div>
