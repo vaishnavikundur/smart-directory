@@ -69,8 +69,12 @@ export function ContactCard({ contact, index }: ContactCardProps) {
         {/* Header: Avatar + Name + Actions */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className={`w-[48px] h-[48px] rounded-full ${getAvatarColor(contact.name)} flex items-center justify-center text-white text-[16px] font-semibold tracking-tight shadow-sm`}>
-              {getInitials(contact.name)}
+            <div className={`w-[48px] h-[48px] rounded-full flex items-center justify-center text-white text-[16px] font-semibold tracking-tight shadow-sm overflow-hidden ${!contact.photo ? getAvatarColor(contact.name) : ''}`}>
+              {contact.photo ? (
+                <img src={contact.photo} alt={contact.name} className="w-full h-full object-cover" />
+              ) : (
+                getInitials(contact.name)
+              )}
             </div>
             <div>
               <h3 className="text-[17px] font-semibold text-[var(--text-primary)] leading-tight tracking-apple-tight">

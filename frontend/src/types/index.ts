@@ -13,6 +13,7 @@ export interface Contact {
   name: string;
   phone?: string;
   email?: string;
+  photo?: string;
   company?: string;
   address?: string;
   tags: string[];
@@ -42,6 +43,7 @@ export interface ContactFormData {
   name: string;
   email?: string;
   phone?: string;
+  photo?: string;
   company?: string;
   address?: string;
   tags: string[];

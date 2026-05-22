@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as zod from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Phone, Mail, Building, MapPin, AlertCircle } from 'lucide-react';
+import { X, User, Phone, Mail, Building, MapPin, AlertCircle, Camera } from 'lucide-react';
 import { useUiStore } from '../stores/uiStore';
 import { useContact, useCreateContact, useUpdateContact } from '../hooks/useContacts';
 import { TagInput } from './TagInput';
@@ -13,6 +13,7 @@ const contactSchema = zod.object({
   name: zod.string().min(1, 'Name is required'),
   email: zod.string().email('Invalid email').or(zod.string().length(0)),
   phone: zod.string().optional(),
+  photo: zod.string().optional(),
   company: zod.string().optional(),
   address: zod.string().optional(),
   tags: zod.array(zod.string()).default([]),
@@ -37,6 +38,8 @@ export const ContactModal: React.FC = () => {
     control,
     reset,
     setError,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -44,11 +47,14 @@ export const ContactModal: React.FC = () => {
       name: '',
       email: '',
       phone: '',
+      photo: '',
       company: '',
       address: '',
       tags: [],
     },
   });
+
+  const photoValue = watch('photo');
 
   // Pre-fill form on edit mode
   useEffect(() => {
@@ -57,6 +63,7 @@ export const ContactModal: React.FC = () => {
         name: contact.name,
         email: contact.email || '',
         phone: contact.phone || '',
+        photo: contact.photo || '',
         company: contact.company || '',
         address: contact.address || '',
         tags: contact.tags || [],
@@ -67,6 +74,7 @@ export const ContactModal: React.FC = () => {
         name: '',
         email: '',
         phone: '',
+        photo: '',
         company: '',
         address: '',
         tags: [],
@@ -74,6 +82,21 @@ export const ContactModal: React.FC = () => {
       setDuplicateWarning({});
     }
   }, [contact, isEdit, reset]);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        alert('Image must be less than 2MB');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setValue('photo', reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const checkDuplicateField = async (field: 'email' | 'phone' | 'name', value: string) => {
     if (!value) return;
@@ -109,6 +132,7 @@ export const ContactModal: React.FC = () => {
       name: values.name,
       email: values.email || undefined,
       phone: values.phone || undefined,
+      photo: values.photo || undefined,
       company: values.company || undefined,
       address: values.address || undefined,
       tags: values.tags,
@@ -184,6 +208,34 @@ export const ContactModal: React.FC = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              
+              <div className="flex flex-col items-center justify-center mb-6">
+                <label className="relative cursor-pointer group">
+                  <div className="w-24 h-24 rounded-full overflow-hidden bg-[var(--bg-page)] border-2 border-dashed border-[var(--border-hard)] flex items-center justify-center group-hover:border-[var(--apple-primary)] transition-colors">
+                    {photoValue ? (
+                      <img src={photoValue} alt="Contact" className="w-full h-full object-cover" />
+                    ) : (
+                      <Camera className="w-8 h-8 text-[var(--text-secondary)] group-hover:text-[var(--apple-primary)] transition-colors" />
+                    )}
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/jpeg, image/png, image/webp"
+                    className="hidden"
+                    onChange={handleImageUpload}
+                  />
+                </label>
+                {photoValue && (
+                  <button
+                    type="button"
+                    onClick={() => setValue('photo', '')}
+                    className="text-[12px] text-red-500 hover:text-red-600 mt-2 font-medium"
+                  >
+                    Remove Photo
+                  </button>
+                )}
+              </div>
+
               <div className="space-y-1.5">
                 <label className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Name *</label>
                 <div className="relative">

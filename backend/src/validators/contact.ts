@@ -7,6 +7,7 @@ export const createContactSchema = z.object({
     .trim(),
   phone: z.string().trim().optional(),
   email: z.string().email('Invalid email format').trim().toLowerCase().optional().or(z.literal('')),
+  photo: z.string().optional(),
   company: z.string().trim().optional(),
   address: z.string().trim().optional(),
   tags: z.array(z.string().trim()).optional().default([]),

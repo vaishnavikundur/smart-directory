@@ -6,6 +6,7 @@ export interface IContact extends Document {
   name: string;
   phone?: string;
   email?: string;
+  photo?: string;
   company?: string;
   address?: string;
   tags: string[];
@@ -37,6 +38,10 @@ const contactSchema = new Schema<IContact>(
       trim: true,
       lowercase: true,
       sparse: true,
+    },
+    photo: {
+      type: String,
+      default: null,
     },
     company: {
       type: String,
