@@ -6,7 +6,7 @@ import { LandingFooter } from '../components/landing/LandingFooter';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] font-sans selection:bg-purple-500/30">
+    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] font-sans selection:bg-[var(--link-color)] selection:text-white">
       <LandingNavbar />
       <main>
         <HeroSection />

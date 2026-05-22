@@ -6,24 +6,24 @@ export function AboutStatsSection() {
     {
       value: '99.9%',
       label: 'Uptime Reliability',
-      icon: <Activity className="w-5 h-5 text-blue-400" />,
+      icon: <Activity className="w-5 h-5 text-blue-500" />,
     },
     {
       value: '256-bit',
       label: 'AES Encryption',
-      icon: <Lock className="w-5 h-5 text-purple-400" />,
+      icon: <Lock className="w-5 h-5 text-purple-500" />,
     },
     {
       value: '10k+',
       label: 'Active Users',
-      icon: <Users className="w-5 h-5 text-green-400" />,
+      icon: <Users className="w-5 h-5 text-green-500" />,
     },
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden bg-[var(--bg-page)]">
       {/* Background decorations */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] -z-10" />
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-apple-primary/5 rounded-full blur-[100px] -z-10" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -32,10 +32,10 @@ export function AboutStatsSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Built for professionals who value their <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">time and privacy</span>.
+            <h2 className="text-[32px] md:text-[40px] font-semibold tracking-apple-tight mb-6 text-[var(--text-primary)]">
+              Built for professionals who value their <span className="text-[var(--link-color)]">time and privacy</span>.
             </h2>
-            <div className="space-y-6 text-[var(--text-secondary)] text-lg">
+            <div className="space-y-6 text-[var(--text-secondary)] text-[17px] tracking-apple-loose leading-relaxed">
               <p>
                 In today's fast-paced world, your network is your net worth. But managing hundreds of contacts across different platforms can quickly become overwhelming.
               </p>
@@ -49,9 +49,9 @@ export function AboutStatsSection() {
                 <div key={index} className="space-y-2">
                   <div className="flex items-center space-x-2">
                     {stat.icon}
-                    <span className="text-3xl font-bold text-white">{stat.value}</span>
+                    <span className="text-3xl font-bold text-[var(--text-primary)] tracking-apple-tight">{stat.value}</span>
                   </div>
-                  <p className="text-sm text-[var(--text-secondary)]">{stat.label}</p>
+                  <p className="text-[14px] text-[var(--text-secondary)]">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -63,34 +63,34 @@ export function AboutStatsSection() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-3xl transform rotate-3 scale-105 -z-10 blur-xl" />
-            <div className="bg-[#13161c] border border-white/10 rounded-3xl p-8 shadow-2xl">
+            <div className="absolute inset-0 bg-apple-primary/10 rounded-3xl transform rotate-3 scale-105 -z-10 blur-xl" />
+            <div className="bg-[var(--bg-card)] border border-[var(--border-hard)] rounded-3xl p-8 shadow-apple-product">
               <div className="space-y-6">
-                <div className="flex items-center space-x-4 border-b border-white/5 pb-6">
-                  <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
-                    <span className="text-blue-400 font-bold text-xl">1</span>
+                <div className="flex items-center space-x-4 border-b border-[var(--border-soft)] pb-6">
+                  <div className="w-12 h-12 rounded-full bg-[var(--bg-page)] border border-[var(--border-hard)] flex items-center justify-center shadow-sm">
+                    <span className="text-blue-500 font-semibold text-xl">1</span>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-white">Create your account</h4>
-                    <p className="text-sm text-[var(--text-secondary)]">Sign up in seconds. No credit card required.</p>
+                    <h4 className="text-[17px] font-semibold text-[var(--text-primary)] tracking-apple-tight">Create your account</h4>
+                    <p className="text-[14px] text-[var(--text-secondary)] mt-1">Sign up in seconds. No credit card required.</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4 border-b border-white/5 pb-6">
-                  <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-                    <span className="text-purple-400 font-bold text-xl">2</span>
+                <div className="flex items-center space-x-4 border-b border-[var(--border-soft)] pb-6">
+                  <div className="w-12 h-12 rounded-full bg-[var(--bg-page)] border border-[var(--border-hard)] flex items-center justify-center shadow-sm">
+                    <span className="text-purple-500 font-semibold text-xl">2</span>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-white">Import your network</h4>
-                    <p className="text-sm text-[var(--text-secondary)]">Easily add contacts with our streamlined form.</p>
+                    <h4 className="text-[17px] font-semibold text-[var(--text-primary)] tracking-apple-tight">Import your network</h4>
+                    <p className="text-[14px] text-[var(--text-secondary)] mt-1">Easily add contacts with our streamlined form.</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <span className="text-green-400 font-bold text-xl">3</span>
+                  <div className="w-12 h-12 rounded-full bg-[var(--bg-page)] border border-[var(--border-hard)] flex items-center justify-center shadow-sm">
+                    <span className="text-green-500 font-semibold text-xl">3</span>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-white">Stay organized</h4>
-                    <p className="text-sm text-[var(--text-secondary)]">Find anyone instantly with blazing-fast search.</p>
+                    <h4 className="text-[17px] font-semibold text-[var(--text-primary)] tracking-apple-tight">Stay organized</h4>
+                    <p className="text-[14px] text-[var(--text-secondary)] mt-1">Find anyone instantly with blazing-fast search.</p>
                   </div>
                 </div>
               </div>
