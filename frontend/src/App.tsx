@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
+import LandingPage from './pages/LandingPage';
 import { Layout } from './components/Layout';
 import { useAuthStore } from './stores/authStore';
 
@@ -32,6 +33,7 @@ function PublicRoute({ children }: RouteProps) {
 
 export default function App() {
   const checkAuth = useAuthStore((state) => state.checkAuth);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const [isInitializing, setIsInitializing] = React.useState(true);
 
   React.useEffect(() => {
@@ -66,13 +68,17 @@ export default function App() {
         }
       />
 
-      {/* Protected Core Dashboard Route */}
+      {/* Dynamic Root Route */}
       <Route
         path="/"
         element={
-          <ProtectedRoute>
-            <DashboardPage />
-          </ProtectedRoute>
+          isAuthenticated ? (
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          ) : (
+            <LandingPage />
+          )
         }
       />
 
