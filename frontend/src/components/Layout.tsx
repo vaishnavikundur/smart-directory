@@ -140,7 +140,7 @@ export function Layout({ children }: LayoutProps) {
       // Continue even if API fails
     }
     logoutStore();
-    navigate('/login', { replace: true });
+    navigate('/', { replace: true });
   };
 
   const initials = user?.name
