@@ -52,7 +52,7 @@ export default function LoginPage() {
 
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] flex flex-col justify-center items-center px-4 relative overflow-hidden transition-colors duration-300">
+    <div className="min-h-screen bg-resend-canvas flex flex-col justify-center items-center px-4 relative overflow-hidden transition-colors duration-300">
 
       {/* Main Container */}
       <motion.div
@@ -63,25 +63,25 @@ export default function LoginPage() {
       >
         {/* Brand/Logo */}
         <div className="flex flex-col items-center mb-10">
-          <div className="w-12 h-12 rounded-full bg-[var(--text-primary)] flex items-center justify-center mb-5">
-            <Zap size={22} className="text-[var(--bg-page)] fill-[var(--bg-page)]" />
+          <div className="w-12 h-12 rounded-resend-full bg-resend-ink flex items-center justify-center mb-5">
+            <Zap size={22} className="text-resend-canvas fill-resend-canvas" />
           </div>
-          <h2 className="text-[28px] font-semibold text-[var(--text-primary)] tracking-apple-tight">
-            ContactFlow
+          <h2 className="text-[24px] font-medium text-resend-ink tracking-resend-tight font-display">
+            SMART DIRECTORY
           </h2>
-          <p className="text-[var(--text-secondary)] text-[14px] mt-1 text-center">
+          <p className="text-resend-charcoal text-[13px] mt-2 text-center font-mono">
             Sign in to your account.
           </p>
         </div>
 
         {/* Login Card */}
-        <div className="bg-[var(--bg-card)] rounded-apple-lg border border-[var(--border-soft)] p-8 shadow-sm">
+        <div className="bg-resend-surface-card rounded-resend-lg border border-resend-hairline p-8 shadow-2xl">
           
           {error && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-[13px] flex items-start gap-3"
+              className="mb-6 p-4 rounded-resend-md bg-red-500/10 border border-red-500/20 text-red-500 text-[13px] flex items-start gap-3 font-mono"
             >
               <ShieldAlert size={16} className="flex-shrink-0 mt-0.5" />
               <span>{error}</span>
@@ -91,27 +91,27 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {/* Email Field */}
             <div>
-              <label className="block text-[12px] font-semibold text-[var(--text-secondary)] tracking-wider mb-2">
+              <label className="block text-[12px] font-medium text-resend-charcoal uppercase tracking-widest mb-2">
                 EMAIL ADDRESS
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-resend-ash">
                   <Mail size={16} />
                 </span>
                 <input
                   type="email"
                   {...register('email')}
-                  className={`input-field pl-10 w-full ${
+                  className={`input-field pl-10 w-full font-mono text-[13px] ${
                     errors.email
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                      : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
+                      : ''
                   }`}
                   placeholder="Enter your email"
                   disabled={isLoading}
                 />
               </div>
               {errors.email && (
-                <p className="text-[12px] text-red-500 mt-1.5 font-medium">
+               <p className="text-[12px] text-red-500 mt-1.5 font-medium font-mono">
                   {errors.email.message}
                 </p>
               )}
@@ -119,27 +119,27 @@ export default function LoginPage() {
 
             {/* Password Field */}
             <div>
-              <label className="block text-[12px] font-semibold text-[var(--text-secondary)] tracking-wider mb-2">
+              <label className="block text-[12px] font-medium text-resend-charcoal uppercase tracking-widest mb-2">
                 PASSWORD
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-resend-ash">
                   <Lock size={16} />
                 </span>
                 <input
                   type="password"
                   {...register('password')}
-                  className={`input-field pl-10 w-full ${
+                  className={`input-field pl-10 w-full font-mono text-[13px] ${
                     errors.password
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                      : 'focus:border-[var(--apple-primary-focus)] focus:ring-1 focus:ring-[var(--apple-primary-focus)]'
+                      : ''
                   }`}
                   placeholder="Enter your password"
                   disabled={isLoading}
                 />
               </div>
               {errors.password && (
-                <p className="text-[12px] text-red-500 mt-1.5 font-medium">
+                <p className="text-[12px] text-red-500 mt-1.5 font-medium font-mono">
                   {errors.password.message}
                 </p>
               )}
@@ -150,7 +150,7 @@ export default function LoginPage() {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isLoading}
-              className="w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 bg-[var(--text-primary)] text-[var(--bg-page)] font-medium rounded-apple-pill transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-[14px]"
+              className="btn-primary w-full mt-4 flex items-center justify-center gap-2 py-3"
             >
               {isLoading ? (
                 <>
@@ -168,11 +168,11 @@ export default function LoginPage() {
         </div>
 
         {/* Footer Link */}
-        <p className="text-center text-[14px] text-[var(--text-secondary)] mt-8">
+        <p className="text-center text-[13px] text-resend-ash mt-8 font-mono">
           Don't have an account?{' '}
           <Link
             to="/register"
-            className="text-[var(--link-color)] font-medium hover:underline transition-colors"
+            className="text-resend-ink font-medium hover:underline transition-colors"
           >
             Create one now
           </Link>

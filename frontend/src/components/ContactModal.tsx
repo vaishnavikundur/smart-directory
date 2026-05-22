@@ -187,35 +187,35 @@ export const ContactModal: React.FC = () => {
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.95, opacity: 0, y: 20 }}
           transition={{ type: 'spring', duration: 0.4 }}
-          className="bg-[var(--bg-card)] relative z-10 w-full max-w-xl p-8 rounded-apple-lg shadow-apple-product border border-[var(--border-hard)]"
+          className="bg-resend-surface-card relative z-10 w-full max-w-xl p-8 rounded-resend-lg shadow-2xl border border-resend-hairline"
         >
           <button
             onClick={closeModal}
-            className="absolute top-6 right-6 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors p-1 bg-[var(--border-soft)] hover:bg-[var(--border-hard)] rounded-full"
+            className="absolute top-6 right-6 text-resend-ash hover:text-resend-ink p-1 bg-resend-surface-elevated hover:bg-resend-surface-card border border-transparent hover:border-resend-hairline-strong rounded-resend-md transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
 
           <div className="mb-8">
-            <h2 className="text-[28px] font-semibold tracking-apple-tight text-[var(--text-primary)]">
+            <h2 className="text-[24px] font-medium tracking-resend-tight text-resend-ink font-display">
               {isEdit ? 'Edit Contact' : 'New Contact'}
             </h2>
           </div>
 
           {isEdit && isLoadingContact ? (
             <div className="py-12 flex justify-center items-center">
-              <div className="w-8 h-8 border-2 border-apple-primary/20 border-t-apple-primary rounded-full animate-spin" />
+              <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               
               <div className="flex flex-col items-center justify-center mb-6">
                 <label className="relative cursor-pointer group">
-                  <div className="w-24 h-24 rounded-full overflow-hidden bg-[var(--bg-page)] border-2 border-dashed border-[var(--border-hard)] flex items-center justify-center group-hover:border-[var(--apple-primary)] transition-colors">
+                  <div className="w-24 h-24 rounded-resend-full overflow-hidden bg-resend-surface-elevated border border-dashed border-resend-hairline-strong flex items-center justify-center group-hover:border-resend-ash transition-colors">
                     {photoValue ? (
                       <img src={photoValue} alt="Contact" className="w-full h-full object-cover" />
                     ) : (
-                      <Camera className="w-8 h-8 text-[var(--text-secondary)] group-hover:text-[var(--apple-primary)] transition-colors" />
+                      <Camera className="w-8 h-8 text-resend-ash group-hover:text-resend-charcoal transition-colors" />
                     )}
                   </div>
                   <input
@@ -237,15 +237,15 @@ export const ContactModal: React.FC = () => {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Name *</label>
+                <label className="text-[12px] font-medium text-resend-charcoal uppercase tracking-widest">Name *</label>
                 <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)]" />
+                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-resend-ash" />
                   <input
                     type="text"
                     {...register('name')}
                     placeholder="Enter name"
                     onBlur={(e) => checkDuplicateField('name', e.target.value)}
-                    className="input-field pl-11"
+                    className="input-field pl-10"
                   />
                 </div>
                 {errors.name && (
@@ -262,15 +262,15 @@ export const ContactModal: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Email</label>
+                  <label className="text-[12px] font-medium text-resend-charcoal uppercase tracking-widest">Email</label>
                   <div className="relative">
-                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)]" />
+                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-resend-ash" />
                     <input
                       type="text"
                       {...register('email')}
                       placeholder="Enter email"
                       onBlur={(e) => checkDuplicateField('email', e.target.value)}
-                      className="input-field pl-11"
+                      className="input-field pl-10"
                     />
                   </div>
                   {errors.email && (
@@ -281,15 +281,15 @@ export const ContactModal: React.FC = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Phone</label>
+                  <label className="text-[12px] font-medium text-resend-charcoal uppercase tracking-widest">Phone</label>
                   <div className="relative">
-                    <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)]" />
+                    <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-resend-ash" />
                     <input
                       type="text"
                       {...register('phone')}
                       placeholder="Enter phone number"
                       onBlur={(e) => checkDuplicateField('phone', e.target.value)}
-                      className="input-field pl-11"
+                      className="input-field pl-10"
                     />
                   </div>
                   {errors.phone && (
@@ -306,33 +306,33 @@ export const ContactModal: React.FC = () => {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Company</label>
+                <label className="text-[12px] font-medium text-resend-charcoal uppercase tracking-widest">Company</label>
                 <div className="relative">
-                  <Building className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)]" />
+                  <Building className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-resend-ash" />
                   <input
                     type="text"
                     {...register('company')}
                     placeholder="Enter company"
-                    className="input-field pl-11"
+                    className="input-field pl-10"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Address</label>
+                <label className="text-[12px] font-medium text-resend-charcoal uppercase tracking-widest">Address</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3.5 top-3.5 w-5 h-5 text-[var(--text-secondary)]" />
+                  <MapPin className="absolute left-3.5 top-3 w-4 h-4 text-resend-ash" />
                   <textarea
                     {...register('address')}
                     placeholder="Enter address"
                     rows={2}
-                    className="input-field pl-11 resize-none"
+                    className="input-field pl-10 resize-none py-2.5"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Tags</label>
+                <label className="text-[12px] font-medium text-resend-charcoal uppercase tracking-widest">Tags</label>
                 <Controller
                   name="tags"
                   control={control}
@@ -342,11 +342,11 @@ export const ContactModal: React.FC = () => {
                 />
               </div>
 
-              <div className="flex gap-4 justify-end pt-6 mt-8 border-t border-[var(--border-hard)]">
+              <div className="flex gap-4 justify-end pt-6 mt-8 border-t border-resend-hairline">
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="btn-secondary-pill"
+                  className="btn-secondary"
                 >
                   Cancel
                 </button>
@@ -356,7 +356,7 @@ export const ContactModal: React.FC = () => {
                   className="btn-primary flex items-center justify-center min-w-[120px]"
                 >
                   {createContactMutation.isPending || updateContactMutation.isPending ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-resend-full animate-spin" />
                   ) : isEdit ? (
                     'Save'
                   ) : (

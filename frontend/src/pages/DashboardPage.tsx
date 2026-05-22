@@ -45,34 +45,34 @@ export default function DashboardPage() {
         </div>
         
         {/* Sorting & Filter Details Bar */}
-        <div className="flex items-center gap-4 bg-[var(--bg-card)] rounded-apple-pill px-4 py-2 border border-[var(--border-hard)] shadow-sm">
-          <div className="flex items-center gap-2 text-[14px] text-[var(--text-secondary)]">
-            <Filter size={16} />
-            <span className="text-[var(--text-primary)] font-medium">
+        <div className="flex items-center gap-4 bg-resend-surface-elevated rounded-resend-sm px-4 py-2 border border-resend-hairline-strong shadow-sm font-mono">
+          <div className="flex items-center gap-2 text-[13px] text-resend-ash">
+            <Filter size={14} />
+            <span className="text-resend-ink font-medium">
               {showFavoritesOnly ? 'Favorites' : activeTag ? `Tag: ${activeTag}` : 'All'}
             </span>
           </div>
           
-          <div className="h-4 w-[1px] bg-[var(--border-hard)]"></div>
+          <div className="h-4 w-[1px] bg-resend-hairline-strong"></div>
 
           <div className="flex items-center gap-2">
-            <ArrowUpDown size={14} className="text-[var(--text-secondary)]" />
+            <ArrowUpDown size={14} className="text-resend-ash" />
             <div className="relative flex items-center">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="appearance-none bg-transparent text-[14px] text-[var(--text-primary)] font-medium cursor-pointer focus:outline-none pr-4"
+                className="appearance-none bg-transparent text-[13px] text-resend-ink font-medium cursor-pointer focus:outline-none pr-4"
               >
                 <option value="name">Name</option>
                 <option value="createdAt">Date Created</option>
                 <option value="company">Company</option>
               </select>
-              <ChevronDown size={12} className="absolute right-0 pointer-events-none text-[var(--text-secondary)]" />
+              <ChevronDown size={12} className="absolute right-0 pointer-events-none text-resend-ash" />
             </div>
 
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-              className="text-[12px] font-bold text-[var(--link-color)] hover:opacity-80 transition-opacity ml-2"
+              className="text-[12px] font-bold text-resend-ink hover:text-resend-ash transition-colors ml-2"
               title={sortOrder === 'asc' ? 'Sort Ascending' : 'Sort Descending'}
             >
               {sortOrder === 'asc' ? 'ASC' : 'DESC'}
@@ -82,8 +82,8 @@ export default function DashboardPage() {
       </div>
 
       {searchQuery && (
-        <div className="text-[14px] text-[var(--text-secondary)]">
-          Showing results for <span className="font-semibold text-[var(--text-primary)]">"{searchQuery}"</span>
+        <div className="text-[13px] text-resend-ash font-mono">
+          Showing results for <span className="font-semibold text-resend-ink">"{searchQuery}"</span>
         </div>
       )}
 

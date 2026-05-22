@@ -11,8 +11,8 @@ interface ContactCardProps {
 }
 
 const avatarColors = [
-  'bg-blue-500', 'bg-indigo-500', 'bg-purple-500', 'bg-pink-500',
-  'bg-rose-500', 'bg-orange-500', 'bg-emerald-500', 'bg-teal-500'
+  'bg-blue-600', 'bg-indigo-600', 'bg-purple-600', 'bg-pink-600',
+  'bg-rose-600', 'bg-orange-600', 'bg-emerald-600', 'bg-teal-600'
 ];
 
 function getAvatarColor(name: string): string {
@@ -63,13 +63,13 @@ export function ContactCard({ contact, index }: ContactCardProps) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.5) }}
       onClick={() => openModal('editContact', contact.id)}
-      className="store-utility-card group relative cursor-pointer hover:shadow-apple-product"
+      className="bg-resend-surface-card border border-resend-hairline hover:border-resend-ink rounded-resend-md p-5 group relative cursor-pointer transition-colors shadow-sm"
     >
       <div className="flex flex-col gap-4">
         {/* Header: Avatar + Name + Actions */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className={`w-[48px] h-[48px] rounded-full flex items-center justify-center text-white text-[16px] font-semibold tracking-tight shadow-sm overflow-hidden ${!contact.photo ? getAvatarColor(contact.name) : ''}`}>
+            <div className={`w-[48px] h-[48px] rounded-resend-full flex items-center justify-center text-white text-[16px] font-medium tracking-tight overflow-hidden ${!contact.photo ? getAvatarColor(contact.name) : 'border border-resend-hairline'}`}>
               {contact.photo ? (
                 <img src={contact.photo} alt={contact.name} className="w-full h-full object-cover" />
               ) : (
@@ -77,11 +77,11 @@ export function ContactCard({ contact, index }: ContactCardProps) {
               )}
             </div>
             <div>
-              <h3 className="text-[17px] font-semibold text-[var(--text-primary)] leading-tight tracking-apple-tight">
+              <h3 className="text-[16px] font-medium text-resend-ink leading-tight tracking-resend-tight">
                 {contact.name}
               </h3>
               {contact.company && (
-                <p className="text-[14px] text-[var(--text-secondary)] mt-0.5 tracking-apple-tight">{contact.company}</p>
+                <p className="text-[13px] text-resend-charcoal mt-1 tracking-resend-tight">{contact.company}</p>
               )}
             </div>
           </div>
@@ -89,19 +89,19 @@ export function ContactCard({ contact, index }: ContactCardProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={handleFavoriteClick}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--border-soft)] transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-resend-full hover:bg-resend-surface-elevated transition-colors"
             >
               <Star
-                size={18}
-                className={contact.isFavorite ? 'text-amber-400 fill-amber-400' : 'text-[var(--text-secondary)]'}
+                size={16}
+                className={contact.isFavorite ? 'text-amber-400 fill-amber-400' : 'text-resend-ash'}
               />
             </button>
             <div className="relative">
               <button
                 onClick={(e) => { e.stopPropagation(); setShowOptions(!showOptions); }}
-                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--border-soft)] text-[var(--text-secondary)] transition-opacity opacity-60 sm:opacity-0 group-hover:opacity-100"
+                className="w-8 h-8 flex items-center justify-center rounded-resend-full hover:bg-resend-surface-elevated text-resend-ash transition-opacity opacity-60 sm:opacity-0 group-hover:opacity-100"
               >
-                <MoreHorizontal size={18} />
+                <MoreHorizontal size={16} />
               </button>
               
               {showOptions && (
@@ -117,14 +117,14 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                   />
                   
                   {/* Dropdown Menu */}
-                  <div className="absolute top-full right-0 mt-1 w-32 bg-[var(--bg-card)] border border-[var(--border-hard)] shadow-apple-product rounded-apple-sm overflow-hidden z-20">
+                  <div className="absolute top-full right-0 mt-1 w-32 bg-resend-surface-elevated border border-resend-hairline-strong shadow-xl rounded-resend-sm overflow-hidden z-20">
                     <button 
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowOptions(false);
                         handleEditClick(e);
                       }} 
-                      className="w-full text-left px-4 py-2 text-[14px] text-[var(--text-primary)] hover:bg-[var(--border-soft)] flex items-center gap-2"
+                      className="w-full text-left px-4 py-2.5 text-[13px] text-resend-charcoal hover:text-resend-ink hover:bg-resend-surface-card flex items-center gap-2 transition-colors"
                     >
                       <Edit size={14} /> Edit
                     </button>
@@ -133,7 +133,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                         e.stopPropagation();
                         handleDeleteClick(e);
                       }} 
-                      className="w-full text-left px-4 py-2 text-[14px] text-red-500 hover:bg-red-500/10 flex items-center gap-2"
+                      className="w-full text-left px-4 py-2.5 text-[13px] text-red-500 hover:bg-red-500/10 flex items-center gap-2 transition-colors"
                     >
                       <Trash size={14} /> {showDeleteConfirm ? 'Confirm?' : 'Delete'}
                     </button>
@@ -145,22 +145,22 @@ export function ContactCard({ contact, index }: ContactCardProps) {
         </div>
 
         {/* Contact Details */}
-        <div className="space-y-2 mt-2">
+        <div className="space-y-2.5 mt-2">
           {contact.email && (
-            <div className="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-              <Mail size={16} className="text-[var(--text-secondary)]/70" />
+            <div className="flex items-center gap-3 text-[13px] text-resend-charcoal font-mono">
+              <Mail size={14} className="text-resend-ash" />
               <span className="truncate">{contact.email}</span>
             </div>
           )}
           {contact.phone && (
-            <div className="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-              <Phone size={16} className="text-[var(--text-secondary)]/70" />
+            <div className="flex items-center gap-3 text-[13px] text-resend-charcoal font-mono">
+              <Phone size={14} className="text-resend-ash" />
               <span>{contact.phone}</span>
             </div>
           )}
           {contact.address && (
-            <div className="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-              <MapPin size={16} className="text-[var(--text-secondary)]/70" />
+            <div className="flex items-center gap-3 text-[13px] text-resend-charcoal font-mono">
+              <MapPin size={14} className="text-resend-ash" />
               <span className="truncate">{contact.address}</span>
             </div>
           )}
@@ -168,7 +168,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
 
         {/* Tags */}
         {(contact.tags?.length ?? 0) > 0 && (
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-2 mt-3">
             {contact.tags?.map((tag) => (
               <span
                 key={tag}
@@ -176,7 +176,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                   e.stopPropagation();
                   useUiStore.getState().setActiveTag(tag);
                 }}
-                className="px-2.5 py-1 text-[12px] font-medium rounded-full bg-[var(--border-soft)] text-[var(--text-primary)] hover:bg-[var(--border-hard)] transition-colors"
+                className="px-2.5 py-1 text-[11px] font-mono rounded-resend-sm bg-resend-surface-elevated border border-resend-hairline-strong text-resend-charcoal hover:text-resend-ink hover:border-resend-ash transition-colors"
               >
                 {tag}
               </span>

@@ -71,7 +71,7 @@ export const useUiStore = create<UiState>()(
       setSortOrder: (sortOrder) => set({ sortOrder }),
     }),
     {
-      name: 'contactflow-ui',
+      name: 'smartdirectory-ui',
       partialize: (state) => ({ theme: state.theme }),
       onRehydrateStorage: () => (state) => {
         if (state?.theme === 'dark') {

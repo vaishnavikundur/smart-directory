@@ -12,15 +12,15 @@ export function LandingNavbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 sub-nav-frosted border-b border-[var(--border-hard)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex justify-between items-center h-[52px]">
+    <nav className="fixed top-0 w-full z-50 nav-bar bg-resend-canvas border-b border-resend-hairline">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="flex justify-between items-center h-full">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <Users size={18} className="text-[var(--text-primary)]" />
-              <span className="text-[17px] font-semibold tracking-apple-tight text-[var(--text-primary)]">
-                ContactFlow
+              <Users size={18} className="text-resend-ink" />
+              <span className="text-[14px] font-semibold tracking-resend-tight text-resend-ink">
+                SMART DIRECTORY
               </span>
             </Link>
           </div>
@@ -31,7 +31,7 @@ export function LandingNavbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-[14px] font-medium"
+                className="text-resend-mute hover:text-resend-ink transition-colors text-[14px] font-medium font-sans"
               >
                 {link.name}
               </a>
@@ -40,13 +40,13 @@ export function LandingNavbar() {
             <div className="flex items-center space-x-3">
               <Link
                 to="/login"
-                className="text-[14px] font-medium text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors px-3"
+                className="text-[14px] font-medium text-resend-mute hover:text-resend-ink transition-colors px-3 font-sans"
               >
                 Log In
               </Link>
               <Link
                 to="/register"
-                className="btn-primary !py-1.5 !px-4 !text-[14px]"
+                className="button-primary"
               >
                 Get Started
               </Link>
@@ -57,7 +57,7 @@ export function LandingNavbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] p-2"
+              className="text-resend-mute hover:text-resend-ink p-2"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -72,7 +72,7 @@ export function LandingNavbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[var(--bg-card)] border-b border-[var(--border-hard)] absolute top-[52px] left-0 w-full shadow-apple-product"
+            className="md:hidden bg-resend-surface-card border-b border-resend-hairline absolute top-[64px] left-0 w-full shadow-2xl"
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
               {navLinks.map((link) => (
@@ -80,7 +80,7 @@ export function LandingNavbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-[var(--text-primary)] text-[17px] font-medium py-3 border-b border-[var(--border-soft)]"
+                  className="block text-resend-ink text-[14px] font-medium py-3 border-b border-resend-hairline-strong"
                 >
                   {link.name}
                 </a>
@@ -89,14 +89,14 @@ export function LandingNavbar() {
                 <Link
                   to="/login"
                   onClick={() => setIsOpen(false)}
-                  className="btn-secondary w-full text-center"
+                  className="button-ghost w-full justify-center"
                 >
                   Log In
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setIsOpen(false)}
-                  className="btn-primary w-full text-center"
+                  className="button-primary w-full justify-center"
                 >
                   Get Started
                 </Link>

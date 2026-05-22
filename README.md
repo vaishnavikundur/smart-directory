@@ -1,21 +1,20 @@
-# Contact Manager Pro
+# SMART DIRECTORY
 
 A modern, high-performance Contact Management application built with the **MERN Stack** (MongoDB, Express, React, Node.js) and TypeScript.
 
-This project features a premium SaaS-style UI with an optimized backend, robust authentication, and a custom high-speed search index for managing thousands of contacts seamlessly.
+This project features a premium, **Resend-inspired strict dark mode UI**, an optimized backend, robust authentication, and a custom high-speed search index for managing thousands of contacts seamlessly.
 
 ---
 
 ## 🚀 Features
 
+- **Premium UI/UX:** A stunning, ultra-minimalist dark mode design inspired by the Resend Design System. Utilizes **TailwindCSS**, **Framer Motion** for subtle micro-animations, and **Lucide React** for beautiful iconography.
 - **Advanced Authentication:** Secure JWT-based auth with access/refresh tokens, optimized bcrypt password hashing, and auto-login flows.
 - **Full Contact Management (CRUD):** Create, read, update, and delete contacts with ease.
-- **Contact Profile Photos:** Upload, preview, and store profile photos (supports `.jpg`, `.png`, `.webp`) using Base64 encoding.
+- **Contact Profile Photos:** Upload, preview, and store profile photos using Base64 encoding.
 - **High-Speed Search:** Custom-built backend search engine using a Trie data structure and Inverted Index for lightning-fast autocomplete and fuzzy search.
 - **Import & Export:** Easily import contacts from CSV/JSON, and export your address book.
-- **Premium UI/UX:** Responsive, Apple-inspired design utilizing **TailwindCSS**, **Framer Motion** for micro-animations, and **Lucide React** for beautiful iconography.
 - **Form Validation:** End-to-end type safety and validation using **Zod** and **React Hook Form**.
-- **Dark/Light Mode:** Full theming support tied to user preferences.
 
 ---
 
@@ -36,13 +35,13 @@ This project features a premium SaaS-style UI with an optimized backend, robust 
 - **Database:** MongoDB (Mongoose ORM)
 - **Validation:** Zod
 - **Authentication:** JSON Web Tokens (JWT) & bcrypt
-- **Caching/Search:** Custom in-memory Search Index (Trie + Inverted Index) & Redis-ready patterns
+- **Caching/Search:** Custom in-memory Search Index (Trie + Inverted Index)
 
 ---
 
 ## 💻 Getting Started
 
-Follow these steps to get the project running locally on your machine.
+Follow these steps to get the project running locally on your machine. We use npm workspaces, so you can easily run both the frontend and backend from the root directory.
 
 ### Prerequisites
 
@@ -58,82 +57,60 @@ git clone <your-repository-url>
 cd "mobile app"
 ```
 
-### 2. Backend Setup
+### 2. Install Dependencies
 
-Open a terminal and navigate to the `backend` directory:
+Install dependencies for both the frontend and backend simultaneously from the root directory:
 
-```bash
-cd backend
-```
-
-**Install Dependencies:**
 ```bash
 npm install
 ```
 
-**Environment Variables:**
-Create a `.env` file in the `backend` directory and add the following:
+### 3. Environment Variables
 
+Create `.env` files in both the root directory and the `backend` directory.
+
+**Root `.env` file** (You can copy from `.env.example`):
 ```env
+MONGODB_URI=mongodb://localhost:27017/smartdirectory
+JWT_SECRET=dev-jwt-secret-key-for-smartdirectory-application-12345
+JWT_REFRESH_SECRET=dev-refresh-jwt-secret-key-for-smartdirectory-application-12345
 PORT=5000
-MONGODB_URI=mongodb://127.0.0.1:27017/contact_manager
-JWT_SECRET=your_super_secret_jwt_key
-JWT_REFRESH_SECRET=your_super_secret_refresh_key
-FRONTEND_URL=http://localhost:5173
 NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
 ```
 
-**Run the Backend Development Server:**
+*(You can use a local MongoDB connection or replace it with your MongoDB Atlas URI)*
+
+### 4. Run the Development Server
+
+Start both the frontend and backend development servers simultaneously using concurrently:
+
 ```bash
 npm run dev
 ```
-The backend should now be running on `http://localhost:5000`.
 
-### 3. Frontend Setup
+- The **Frontend** will be accessible at `http://localhost:3001` (or `http://localhost:3000` depending on port availability).
+- The **Backend API** will be running on `http://localhost:5000`.
 
-Open a new terminal and navigate to the `frontend` directory:
-
-```bash
-cd frontend
-```
-
-**Install Dependencies:**
-```bash
-npm install
-```
-
-**Environment Variables:**
-Create a `.env` file in the `frontend` directory and add the following:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-**Run the Frontend Development Server:**
-```bash
-npm run dev
-```
-The frontend should now be running on `http://localhost:5173`.
+*(Note: API requests from the frontend are automatically proxied to the backend via Vite config, so you don't need a separate frontend `.env` file.)*
 
 ---
 
 ## 📦 Build for Production
 
-To build the project for production environments:
+To build both the frontend and backend for production environments from the root folder:
 
-**Backend:**
 ```bash
-cd backend
 npm run build
+```
+
+Then you can start the backend server:
+
+```bash
 npm start
 ```
 
-**Frontend:**
-```bash
-cd frontend
-npm run build
-```
-This will output static files to the `dist` directory which can be served via Nginx, Vercel, Netlify, or your preferred static host.
+This will output static files for the frontend to `frontend/dist` which can be served via Nginx, Vercel, Netlify, or your preferred static host. The compiled backend code will be in `backend/dist`.
 
 ---
 

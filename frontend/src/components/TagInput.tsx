@@ -38,17 +38,17 @@ export const TagInput: React.FC<TagInputProps> = ({
   return (
     <div className="space-y-2">
       {/* Pills Container */}
-      <div className="flex flex-wrap gap-2 min-h-[44px] p-1.5 input-field focus-within:ring-2 focus-within:ring-apple-primary-focus">
+      <div className="flex flex-wrap gap-2 min-h-[44px] p-2 input-field focus-within:border-resend-ink transition-colors">
         {value.map((tag, idx) => (
           <span
             key={tag}
-            className="flex items-center gap-1 px-3 py-1.5 text-[12px] font-semibold text-[var(--text-primary)] bg-[var(--border-soft)] rounded-apple-pill transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono text-resend-ink bg-resend-surface-card border border-resend-hairline-strong rounded-resend-sm transition-colors"
           >
             {tag}
             <button
               type="button"
               onClick={() => removeTag(idx)}
-              className="text-[var(--text-secondary)] hover:text-red-500 transition-colors ml-1"
+              className="text-resend-ash hover:text-red-500 transition-colors"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -62,10 +62,10 @@ export const TagInput: React.FC<TagInputProps> = ({
           onKeyDown={handleKeyDown}
           onBlur={addTag}
           placeholder={value.length === 0 ? placeholder : ''}
-          className="flex-grow bg-transparent border-0 p-1 text-[14px] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-0 min-w-[120px]"
+          className="flex-grow bg-transparent border-0 p-1 text-[13px] text-resend-ink placeholder-resend-ash focus:outline-none focus:ring-0 min-w-[120px]"
         />
       </div>
-      <p className="text-[12px] text-[var(--text-secondary)]">Press Enter or comma to add a tag</p>
+      <p className="text-[12px] text-resend-charcoal font-mono">Press Enter or comma to add a tag</p>
     </div>
   );
 };

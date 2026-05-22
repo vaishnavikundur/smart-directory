@@ -58,7 +58,7 @@ export const useAuthStore = create<AuthState>()(
         })),
     }),
     {
-      name: 'contactflow-auth',
+      name: 'smartdirectory-auth',
       partialize: (state) => ({
         user: state.user,
         accessToken: state.accessToken,

@@ -83,8 +83,8 @@ export function SearchBar() {
   return (
     <div className="relative w-full max-w-2xl mx-auto">
       <div className="relative flex items-center">
-        <div className="absolute left-4 text-[var(--text-secondary)] pointer-events-none">
-          <Search size={18} />
+        <div className="absolute left-4 text-resend-ash pointer-events-none">
+          <Search size={16} />
         </div>
         <input
           ref={inputRef}
@@ -98,7 +98,7 @@ export function SearchBar() {
         />
         {isAutoLoading && inputValue.length >= 2 && (
           <div className="absolute right-4">
-            <Loader2 size={16} className="text-apple-primary animate-spin" />
+            <Loader2 size={16} className="text-resend-charcoal animate-spin" />
           </div>
         )}
       </div>
@@ -112,11 +112,11 @@ export function SearchBar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-[var(--bg-card)] border border-[var(--border-hard)] shadow-apple-product rounded-apple-lg overflow-hidden z-50 max-h-80 overflow-y-auto"
+            className="absolute top-full left-0 right-0 mt-2 bg-resend-surface-elevated border border-resend-hairline-strong shadow-2xl rounded-resend-md overflow-hidden z-50 max-h-80 overflow-y-auto"
           >
             {showRecent && (
-              <div className="px-4 py-3 border-b border-[var(--border-soft)]">
-                <p className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider flex items-center gap-1.5">
+              <div className="px-4 py-3 border-b border-resend-hairline">
+                <p className="text-[12px] font-medium text-resend-ash uppercase tracking-widest flex items-center gap-1.5 font-mono">
                   <Clock size={14} />
                   Recent Contacts
                 </p>
@@ -124,12 +124,12 @@ export function SearchBar() {
             )}
 
             {isAutoLoading && displayResults.length === 0 ? (
-              <div className="px-4 py-8 text-center text-[var(--text-secondary)] text-[14px]">
-                <Loader2 size={20} className="animate-spin mx-auto mb-2 text-apple-primary" />
+              <div className="px-4 py-8 text-center text-resend-charcoal text-[13px] font-mono">
+                <Loader2 size={20} className="animate-spin mx-auto mb-2 text-resend-ash" />
                 Searching...
               </div>
             ) : displayResults.length === 0 && inputValue.length >= 2 ? (
-              <div className="px-4 py-8 text-center text-[var(--text-secondary)] text-[14px]">
+              <div className="px-4 py-8 text-center text-resend-charcoal text-[13px] font-mono">
                 No contacts found for "{inputValue}"
               </div>
             ) : (
@@ -140,24 +140,24 @@ export function SearchBar() {
                     onClick={() => handleSelect(contact)}
                     className={`w-full flex items-center gap-4 px-4 py-3 text-left transition-colors ${
                       index === selectedIndex
-                        ? 'bg-[var(--border-soft)]'
-                        : 'hover:bg-[var(--border-soft)]'
+                        ? 'bg-resend-surface-card'
+                        : 'hover:bg-resend-surface-card'
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-full bg-[var(--border-hard)] flex items-center justify-center text-[14px] font-semibold text-[var(--text-primary)] flex-shrink-0">
+                    <div className="w-10 h-10 rounded-resend-full bg-resend-surface-card border border-resend-hairline-strong flex items-center justify-center text-[13px] font-medium text-resend-ink flex-shrink-0">
                       {contact.name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[14px] font-medium text-[var(--text-primary)] truncate">{contact.name}</p>
-                      <div className="flex items-center gap-3 mt-0.5">
+                      <p className="text-[14px] font-medium text-resend-ink truncate tracking-resend-tight">{contact.name}</p>
+                      <div className="flex items-center gap-3 mt-1">
                         {contact.email && (
-                          <span className="text-[12px] text-[var(--text-secondary)] flex items-center gap-1 truncate">
+                          <span className="text-[12px] text-resend-ash flex items-center gap-1.5 truncate font-mono">
                             <User size={12} />
                             {contact.email}
                           </span>
                         )}
                         {contact.company && (
-                          <span className="text-[12px] text-[var(--text-secondary)] flex items-center gap-1 truncate">
+                          <span className="text-[12px] text-resend-ash flex items-center gap-1.5 truncate font-mono">
                             <Building2 size={12} />
                             {contact.company}
                           </span>

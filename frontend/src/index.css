@@ -1,44 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --bg-page: #f5f5f7; /* apple.parchment */
-    --bg-card: #ffffff; /* apple.canvas */
-    --text-primary: #1d1d1f; /* apple.ink */
-    --text-secondary: #7a7a7a; /* apple.ink-faint */
-    --border-soft: #f0f0f0; /* apple.divider */
-    --border-hard: #e0e0e0; /* apple.hairline */
-    --link-color: #0066cc; /* apple.primary */
-    --shadow-hairline: 0 0 0 1px rgba(0, 0, 0, 0.08);
-  }
-
-  .dark {
-    --bg-page: #000000; /* apple.surface-black */
-    --bg-card: #272729; /* apple.surface-tile-1 */
-    --text-primary: #ffffff; /* apple.body-on-dark */
-    --text-secondary: #cccccc; /* apple.body-muted */
-    --border-soft: rgba(255, 255, 255, 0.1);
-    --border-hard: rgba(255, 255, 255, 0.15);
-    --link-color: #2997ff; /* apple.primary-on-dark */
-    --shadow-hairline: 0 0 0 1px rgba(255, 255, 255, 0.1);
+    --bg-canvas: #000000;
+    --text-ink: #fcfdff;
+    --text-body: rgba(252,253,255,0.86);
   }
 
   body {
-    @apply bg-[var(--bg-page)] text-[var(--text-primary)] antialiased;
-    font-family: 'SF Pro Text', 'Inter', system-ui, -apple-system, sans-serif;
-    font-size: 17px;
-    line-height: 1.47;
-    letter-spacing: -0.374px;
+    @apply bg-resend-canvas text-resend-ink antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'SF Pro Display', 'Inter', system-ui, -apple-system, sans-serif;
-    @apply tracking-apple-tight;
+    /* Using Inter as fallback since we don't have Domaine Display */
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply tracking-resend-tight;
   }
 
-  /* Custom Scrollbar - Minimal */
+  /* Custom Scrollbar - Dark Minimal */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -47,96 +33,92 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-400/50 rounded-apple-pill;
+    @apply bg-resend-surface-elevated rounded-resend-full border border-resend-hairline;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-500/70;
+    @apply bg-resend-charcoal;
   }
 }
 
 @layer components {
   /* Navigation */
-  .global-nav {
-    @apply h-[44px] bg-apple-surface-black text-apple-body-on-dark w-full flex items-center px-4 lg:px-6 z-50;
+  .nav-bar {
+    @apply h-[64px] bg-resend-canvas text-resend-body w-full flex items-center justify-between px-4 lg:px-8 z-50 border-b border-resend-hairline;
+    font-size: 14px;
+    font-weight: 500;
   }
   
-  .sub-nav-frosted {
-    @apply h-[52px] w-full flex items-center justify-between px-4 lg:px-6 sticky top-0 z-40;
-    background: rgba(245, 245, 247, 0.8);
-    backdrop-filter: saturate(180%) blur(20px);
-  }
-  .dark .sub-nav-frosted {
-    background: rgba(39, 39, 41, 0.8);
+  .footer {
+    @apply bg-resend-canvas text-resend-charcoal py-[64px] px-[32px] border-t border-resend-divider-soft;
+    font-size: 14px;
   }
 
   /* Buttons */
-  .btn-primary {
-    @apply px-[22px] py-[11px] bg-apple-primary text-white text-[17px] font-normal rounded-apple-pill 
-           transition-transform duration-200 hover:scale-[0.95] active:scale-[0.9] 
-           focus:outline-none focus:ring-2 focus:ring-apple-primary-focus focus:ring-offset-2;
+  .button-primary {
+    @apply px-[16px] py-[8px] h-[36px] bg-resend-primary text-resend-primary-on text-[14px] font-medium rounded-resend-md 
+           flex items-center justify-center transition-colors duration-200 hover:bg-resend-surface-light
+           focus:outline-none focus:ring-2 focus:ring-resend-hairline-strong focus:ring-offset-2 focus:ring-offset-resend-canvas;
   }
 
-  .btn-secondary-pill {
-    @apply px-[22px] py-[11px] bg-transparent text-[var(--link-color)] text-[17px] font-normal rounded-apple-pill 
-           border border-[var(--link-color)]
-           transition-transform duration-200 hover:scale-[0.95] active:scale-[0.9]
-           focus:outline-none focus:ring-2 focus:ring-apple-primary-focus focus:ring-offset-2;
+  .button-ghost {
+    @apply px-[16px] py-[8px] h-[36px] bg-resend-surface-elevated text-resend-ink text-[14px] font-medium rounded-resend-md 
+           border border-resend-hairline-strong transition-colors duration-200 hover:bg-resend-surface-card
+           focus:outline-none focus:ring-2 focus:ring-resend-hairline-strong focus:ring-offset-2 focus:ring-offset-resend-canvas;
   }
 
-  .btn-dark-utility {
-    @apply px-[15px] py-[8px] bg-apple-ink text-white text-[14px] tracking-apple-tighter rounded-apple-sm
-           transition-transform duration-200 hover:scale-[0.95] active:scale-[0.9];
-  }
-  
-  .dark .btn-dark-utility {
-    @apply bg-white text-apple-ink;
-  }
-
-  .btn-secondary {
-    @apply px-[22px] py-[11px] bg-[var(--border-soft)] text-[var(--text-primary)] text-[14px] font-medium rounded-apple-pill
-           transition-all duration-200 hover:bg-[var(--border-hard)];
-  }
-
-  .btn-danger {
-    @apply px-[22px] py-[11px] bg-red-500 text-white text-[14px] font-medium rounded-apple-pill
-           transition-all duration-200 hover:bg-red-600;
+  .button-outline {
+    @apply px-[15px] py-[7px] h-[36px] bg-resend-canvas text-resend-ink text-[14px] font-medium rounded-resend-md 
+           border border-resend-hairline-strong transition-colors duration-200 hover:bg-resend-surface-card
+           focus:outline-none focus:ring-2 focus:ring-resend-hairline-strong focus:ring-offset-2 focus:ring-offset-resend-canvas;
   }
 
   .btn-icon-circular {
-    @apply w-[44px] h-[44px] bg-apple-surface-chip text-apple-ink rounded-full flex items-center justify-center
-           transition-transform duration-200 hover:scale-[0.95] active:scale-[0.9];
+    @apply w-[36px] h-[36px] bg-resend-surface-elevated text-resend-ink rounded-resend-full flex items-center justify-center
+           border border-resend-hairline-strong transition-colors duration-200 hover:bg-resend-surface-card;
   }
 
   /* Cards */
-  .store-utility-card {
-    @apply bg-[var(--bg-card)] rounded-apple-lg p-[24px] shadow-[var(--shadow-hairline)] transition-all duration-300;
+  .feature-card {
+    @apply bg-resend-surface-card text-resend-ink rounded-resend-lg p-[32px] border border-resend-hairline-strong transition-all duration-300;
   }
-
-  .configurator-chip {
-    @apply px-[16px] py-[12px] bg-[var(--bg-card)] text-[var(--text-primary)] text-[14px] rounded-apple-pill 
-           shadow-[var(--shadow-hairline)] cursor-pointer transition-all duration-200 hover:scale-[0.98];
-  }
-  .configurator-chip-active {
-    @apply px-[16px] py-[12px] bg-[var(--bg-card)] text-[var(--text-primary)] text-[14px] rounded-apple-pill 
-           border-[2px] border-apple-primary-focus cursor-pointer transition-all duration-200 scale-[0.98];
+  
+  .surface-card {
+    @apply bg-resend-surface-card text-resend-ink rounded-resend-lg border border-resend-hairline-strong;
   }
 
   /* Inputs */
-  .search-input {
-    @apply w-full h-[44px] px-[20px] bg-[var(--bg-card)] text-[17px] text-[var(--text-primary)] 
-           rounded-apple-pill shadow-[var(--shadow-hairline)] placeholder:text-[var(--text-secondary)]
-           focus:outline-none focus:ring-2 focus:ring-apple-primary-focus transition-all duration-200;
+  .input-field {
+    @apply w-full h-[40px] px-[14px] py-[10px] bg-resend-surface-card text-[14px] text-resend-ink 
+           rounded-resend-md border border-resend-hairline-strong placeholder:text-resend-mute
+           focus:outline-none focus:border-resend-ink transition-colors duration-200;
   }
 
-  .input-field {
-    @apply w-full px-[16px] py-[12px] bg-[var(--bg-card)] text-[17px] text-[var(--text-primary)] 
-           rounded-apple-sm shadow-[var(--shadow-hairline)] placeholder:text-[var(--text-secondary)]
-           focus:outline-none focus:ring-2 focus:ring-apple-primary-focus transition-all duration-200;
+  .input-field:-webkit-autofill,
+  .input-field:-webkit-autofill:hover, 
+  .input-field:-webkit-autofill:focus, 
+  .input-field:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px theme('colors.resend.surface-card') inset !important;
+      -webkit-text-fill-color: theme('colors.resend.ink') !important;
+      transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    @apply fixed inset-0 bg-resend-canvas/80 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+  }
+  
+  .modal-content {
+    @apply bg-resend-surface-card border border-resend-hairline-strong rounded-resend-lg w-full max-w-md p-[32px] shadow-2xl;
+  }
+
+  /* Badges */
+  .badge-pill {
+    @apply px-[10px] py-[4px] bg-resend-surface-elevated text-resend-body text-[12px] font-medium rounded-resend-full;
   }
 
   /* Style native options for dark mode readability */
   select option {
-    background-color: var(--bg-card) !important;
-    color: var(--text-primary) !important;
+    background-color: theme('colors.resend.surface-card') !important;
+    color: theme('colors.resend.ink') !important;
   }
 }

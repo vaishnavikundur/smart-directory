@@ -167,24 +167,24 @@ export const ImportExportModal: React.FC = () => {
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.95, opacity: 0, y: 10 }}
           transition={{ type: 'spring', duration: 0.4 }}
-          className="relative z-10 w-full max-w-2xl p-6 md:p-8 overflow-hidden shadow-2xl bg-[var(--bg-card)] rounded-apple-lg border border-[var(--border-soft)]"
+          className="relative z-10 w-full max-w-2xl p-6 md:p-8 overflow-hidden shadow-2xl bg-resend-surface-card rounded-resend-lg border border-resend-hairline"
         >
           {/* Close button */}
           <button
             onClick={closeModal}
-            className="absolute top-6 right-6 text-[var(--text-secondary)] hover:text-[var(--text-primary)] p-1 rounded-full transition-colors"
+            className="absolute top-6 right-6 text-resend-ash hover:text-resend-ink p-1 rounded-resend-md bg-resend-surface-elevated hover:bg-resend-surface-card border border-transparent hover:border-resend-hairline-strong transition-colors"
           >
             <X size={20} />
           </button>
 
           {/* Title */}
           <div className="mb-6">
-            <h2 className="text-[28px] font-semibold tracking-apple-tight text-[var(--text-primary)]">Import & Export</h2>
-            <p className="text-[14px] text-[var(--text-secondary)] mt-1">Bulk transfer your contacts via CSV or JSON formats.</p>
+            <h2 className="text-[24px] font-medium tracking-resend-tight text-resend-ink font-display">Import & Export</h2>
+            <p className="text-[14px] text-resend-charcoal mt-1">Bulk transfer your contacts via CSV or JSON formats.</p>
           </div>
 
           {/* Tabs */}
-          <div className="flex border-b border-[var(--border-soft)] mb-6">
+          <div className="flex border-b border-resend-divider-soft mb-6">
             <button
               onClick={() => {
                 setActiveTab('import');
@@ -193,8 +193,8 @@ export const ImportExportModal: React.FC = () => {
               }}
               className={`flex items-center gap-2 px-4 py-2.5 font-medium text-[14px] transition-all border-b-2 -mb-[1px] ${
                 activeTab === 'import'
-                  ? 'border-[var(--text-primary)] text-[var(--text-primary)]'
-                  : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  ? 'border-resend-ink text-resend-ink'
+                  : 'border-transparent text-resend-ash hover:text-resend-charcoal'
               }`}
             >
               <Upload size={16} /> Import CSV
@@ -207,8 +207,8 @@ export const ImportExportModal: React.FC = () => {
               }}
               className={`flex items-center gap-2 px-4 py-2.5 font-medium text-[14px] transition-all border-b-2 -mb-[1px] ${
                 activeTab === 'export'
-                  ? 'border-[var(--text-primary)] text-[var(--text-primary)]'
-                  : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  ? 'border-resend-ink text-resend-ink'
+                  : 'border-transparent text-resend-ash hover:text-resend-charcoal'
               }`}
             >
               <Download size={16} /> Export Contacts
@@ -224,19 +224,19 @@ export const ImportExportModal: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-5 rounded-2xl bg-[var(--border-soft)] space-y-3"
+                    className="p-5 rounded-resend-md bg-resend-surface-elevated border border-resend-hairline-strong space-y-3"
                   >
-                    <div className="flex items-center gap-2 text-green-500 font-semibold">
-                      <CheckCircle2 size={18} /> Import completed successfully!
+                    <div className="flex items-center gap-2 text-green-500 font-semibold text-[14px]">
+                      <CheckCircle2 size={16} /> Import completed successfully!
                     </div>
-                    <div className="grid grid-cols-2 gap-4 py-3 border-y border-[var(--border-hard)] text-[14px]">
+                    <div className="grid grid-cols-2 gap-4 py-3 border-y border-resend-hairline text-[14px] font-mono">
                       <div>
-                        <span className="text-[var(--text-secondary)]">Imported Rows:</span>{' '}
-                        <strong className="text-[var(--text-primary)] text-lg ml-1">{importResult.imported}</strong>
+                        <span className="text-resend-ash">Imported Rows:</span>{' '}
+                        <strong className="text-resend-ink text-lg ml-1">{importResult.imported}</strong>
                       </div>
                       <div>
-                        <span className="text-[var(--text-secondary)]">Failed Rows:</span>{' '}
-                        <strong className={`${importResult.failedCount > 0 ? 'text-red-500' : 'text-[var(--text-primary)]'} text-lg ml-1`}>
+                        <span className="text-resend-ash">Failed Rows:</span>{' '}
+                        <strong className={`${importResult.failedCount > 0 ? 'text-red-500' : 'text-resend-ink'} text-lg ml-1`}>
                           {importResult.failedCount}
                         </strong>
                       </div>
@@ -244,10 +244,10 @@ export const ImportExportModal: React.FC = () => {
 
                     {importResult.failedCount > 0 && (
                       <div className="space-y-1.5 pt-1">
-                        <span className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider block">
+                        <span className="text-[12px] font-medium text-resend-ash uppercase tracking-widest block">
                           Failure Logs
                         </span>
-                        <div className="max-h-28 overflow-y-auto space-y-1 pr-1 border border-[var(--border-hard)] bg-[var(--bg-page)] p-2.5 rounded-xl">
+                        <div className="max-h-28 overflow-y-auto space-y-1 pr-1 border border-resend-hairline bg-resend-surface-card p-2.5 rounded-resend-sm font-mono">
                           {importResult.failedRows.map((fail, idx) => (
                             <div key={idx} className="text-[12px] text-red-500 flex items-start gap-1">
                               <span className="font-semibold flex-shrink-0">Row {fail.row}:</span>
@@ -275,7 +275,7 @@ export const ImportExportModal: React.FC = () => {
                     {!csvFile ? (
                       <div
                         onClick={triggerFileInput}
-                        className="border border-dashed border-[var(--border-hard)] hover:border-[var(--text-secondary)] rounded-2xl p-8 text-center cursor-pointer transition-colors bg-[var(--bg-page)] group flex flex-col items-center justify-center min-h-[180px]"
+                        className="border border-dashed border-resend-hairline-strong hover:border-resend-ash rounded-resend-lg p-8 text-center cursor-pointer transition-colors bg-resend-surface-elevated group flex flex-col items-center justify-center min-h-[180px]"
                       >
                         <input
                           type="file"
@@ -284,9 +284,9 @@ export const ImportExportModal: React.FC = () => {
                           accept=".csv"
                           className="hidden"
                         />
-                        <Upload className="w-10 h-10 text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors mb-3" />
-                        <h3 className="font-medium text-[var(--text-primary)]">Drag and drop or select a CSV file</h3>
-                        <p className="text-[12px] text-[var(--text-secondary)] mt-1 max-w-xs leading-relaxed">
+                        <Upload className="w-8 h-8 text-resend-ash group-hover:text-resend-charcoal transition-colors mb-3" />
+                        <h3 className="font-medium text-resend-ink">Drag and drop or select a CSV file</h3>
+                        <p className="text-[13px] text-resend-charcoal mt-2 max-w-xs leading-relaxed font-mono">
                           Your CSV should have columns: <code>name</code>, <code>email</code>, <code>phone</code>,{' '}
                           <code>company</code>, <code>address</code>, <code>tags</code>
                         </p>
@@ -294,14 +294,14 @@ export const ImportExportModal: React.FC = () => {
                     ) : (
                       <div className="space-y-4">
                         {/* File detail */}
-                        <div className="flex items-center justify-between p-3.5 bg-[var(--bg-page)] rounded-xl border border-[var(--border-hard)]">
+                        <div className="flex items-center justify-between p-3.5 bg-resend-surface-elevated rounded-resend-md border border-resend-hairline-strong">
                           <div className="flex items-center gap-3">
-                            <div className="p-2 bg-[var(--border-soft)] text-[var(--text-primary)] rounded-lg">
-                              <FileText size={20} />
+                            <div className="p-2 bg-resend-surface-card border border-resend-hairline text-resend-charcoal rounded-resend-sm">
+                              <FileText size={18} />
                             </div>
                             <div>
-                              <h4 className="font-medium text-[14px] text-[var(--text-primary)]">{csvFile.name}</h4>
-                              <p className="text-[12px] text-[var(--text-secondary)]">{(csvFile.size / 1024).toFixed(1)} KB</p>
+                              <h4 className="font-medium text-[14px] text-resend-ink">{csvFile.name}</h4>
+                              <p className="text-[12px] text-resend-ash">{(csvFile.size / 1024).toFixed(1)} KB</p>
                             </div>
                           </div>
                           <button
@@ -309,22 +309,22 @@ export const ImportExportModal: React.FC = () => {
                               setCsvFile(null);
                               setPreviewData([]);
                             }}
-                            className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                            className="text-resend-ash hover:text-resend-ink transition-colors p-1"
                           >
-                            <X size={20} />
+                            <X size={18} />
                           </button>
                         </div>
 
                         {/* Preview panel */}
                         {previewData.length > 0 && (
                           <div className="space-y-2">
-                            <span className="text-[12px] font-semibold text-[var(--text-secondary)] tracking-wider uppercase flex items-center gap-1">
+                            <span className="text-[12px] font-medium text-resend-charcoal tracking-widest uppercase flex items-center gap-1">
                               Previewing Top {previewData.length} Rows <ChevronRight size={14} />
                             </span>
-                            <div className="overflow-x-auto border border-[var(--border-hard)] rounded-xl max-h-48">
-                              <table className="w-full text-left border-collapse text-[12px]">
+                            <div className="overflow-x-auto border border-resend-hairline rounded-resend-md max-h-48">
+                              <table className="w-full text-left border-collapse text-[13px] font-mono">
                                 <thead>
-                                  <tr className="bg-[var(--border-soft)] border-b border-[var(--border-hard)] text-[var(--text-secondary)] font-medium">
+                                  <tr className="bg-resend-surface-elevated border-b border-resend-hairline text-resend-charcoal font-medium">
                                     {previewHeaders.map((header) => (
                                       <th key={header} className="p-2.5 capitalize">{header}</th>
                                     ))}
@@ -332,7 +332,7 @@ export const ImportExportModal: React.FC = () => {
                                 </thead>
                                 <tbody>
                                   {previewData.map((row, idx) => (
-                                    <tr key={idx} className="border-b border-[var(--border-hard)] hover:bg-[var(--border-soft)] text-[var(--text-primary)]">
+                                    <tr key={idx} className="border-b border-resend-hairline hover:bg-resend-surface-elevated text-resend-ink">
                                       {previewHeaders.map((header) => (
                                         <td key={header} className="p-2.5 truncate max-w-[120px]">{row[header] || '-'}</td>
                                       ))}
@@ -345,7 +345,7 @@ export const ImportExportModal: React.FC = () => {
                         )}
 
                         {/* Import Trigger */}
-                        <div className="flex justify-end gap-3 pt-2">
+                        <div className="flex justify-end gap-3 pt-4 border-t border-resend-hairline">
                           <button
                             onClick={() => {
                               setCsvFile(null);
@@ -361,7 +361,7 @@ export const ImportExportModal: React.FC = () => {
                             className="btn-primary py-2 px-5 text-[14px] flex items-center justify-center min-w-[100px]"
                           >
                             {importMutation.isPending ? (
-                              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-resend-full animate-spin" />
                             ) : (
                               'Import Now'
                             )}
@@ -373,7 +373,7 @@ export const ImportExportModal: React.FC = () => {
                 )}
 
                 {parseError && (
-                  <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-[12px] text-red-500 flex items-center gap-2 mt-2">
+                  <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-resend-md text-[13px] text-red-500 flex items-center gap-2 mt-2 font-mono">
                     <AlertCircle size={16} className="flex-shrink-0" />
                     <span>{parseError}</span>
                   </div>
@@ -382,30 +382,30 @@ export const ImportExportModal: React.FC = () => {
             ) : (
               // Export panel
               <div className="space-y-6 pt-4 flex flex-col justify-center items-center text-center">
-                <div className="p-3 bg-[var(--border-soft)] text-[var(--text-primary)] rounded-full mb-2">
-                  <Download size={32} />
+                <div className="p-4 bg-resend-surface-elevated border border-resend-hairline-strong text-resend-charcoal rounded-resend-full mb-2">
+                  <Download size={28} />
                 </div>
                 <div>
-                  <h3 className="text-[18px] font-semibold text-[var(--text-primary)] tracking-apple-tight">Export your Contact List</h3>
-                  <p className="text-[14px] text-[var(--text-secondary)] mt-1 max-w-sm leading-relaxed">
+                  <h3 className="text-[18px] font-medium text-resend-ink tracking-resend-tight font-display">Export your Contact List</h3>
+                  <p className="text-[14px] text-resend-charcoal mt-2 max-w-sm leading-relaxed">
                     Download all your contacts and associated metadata. Select a structured file format below.
                   </p>
                 </div>
 
-                <div className="flex gap-4 w-full max-w-md pt-2">
+                <div className="flex gap-4 w-full max-w-md pt-4">
                   <button
                     onClick={() => handleExport('csv')}
-                    className="flex-1 p-5 rounded-2xl bg-[var(--bg-page)] border border-[var(--border-hard)] hover:border-[var(--text-primary)] transition-all flex flex-col items-center gap-2 group"
+                    className="flex-1 p-5 rounded-resend-md bg-resend-surface-elevated border border-resend-hairline-strong hover:border-resend-ash hover:bg-resend-surface-card transition-all flex flex-col items-center gap-3 group"
                   >
-                    <span className="px-3 py-1 text-[12px] font-semibold tracking-widest text-[var(--text-primary)] bg-[var(--border-soft)] rounded-apple-pill">CSV</span>
-                    <span className="font-medium text-[14px] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">Comma Separated</span>
+                    <span className="px-3 py-1 text-[12px] font-medium tracking-widest text-resend-ink bg-resend-surface-card border border-resend-hairline rounded-resend-sm font-mono">CSV</span>
+                    <span className="font-medium text-[13px] text-resend-charcoal group-hover:text-resend-ink transition-colors">Comma Separated</span>
                   </button>
                   <button
                     onClick={() => handleExport('json')}
-                    className="flex-1 p-5 rounded-2xl bg-[var(--bg-page)] border border-[var(--border-hard)] hover:border-[var(--text-primary)] transition-all flex flex-col items-center gap-2 group"
+                    className="flex-1 p-5 rounded-resend-md bg-resend-surface-elevated border border-resend-hairline-strong hover:border-resend-ash hover:bg-resend-surface-card transition-all flex flex-col items-center gap-3 group"
                   >
-                    <span className="px-3 py-1 text-[12px] font-semibold tracking-widest text-[var(--text-primary)] bg-[var(--border-soft)] rounded-apple-pill">JSON</span>
-                    <span className="font-medium text-[14px] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">Raw Data Format</span>
+                    <span className="px-3 py-1 text-[12px] font-medium tracking-widest text-resend-ink bg-resend-surface-card border border-resend-hairline rounded-resend-sm font-mono">JSON</span>
+                    <span className="font-medium text-[13px] text-resend-charcoal group-hover:text-resend-ink transition-colors">Raw Data Format</span>
                   </button>
                 </div>
               </div>

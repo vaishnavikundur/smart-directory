@@ -38,11 +38,11 @@ export function ContactList({
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col items-center justify-center py-32"
       >
-        <div className="w-16 h-16 rounded-full bg-[var(--border-soft)] flex items-center justify-center mb-6 text-[var(--text-secondary)]">
-          <Users size={32} />
+        <div className="w-16 h-16 rounded-resend-full bg-resend-surface-elevated border border-resend-hairline-strong flex items-center justify-center mb-6 text-resend-mute">
+          <Users size={28} />
         </div>
-        <h3 className="text-[21px] font-semibold text-[var(--text-primary)] mb-2 tracking-apple-loose">No contacts found</h3>
-        <p className="text-[14px] text-[var(--text-secondary)] text-center max-w-sm">
+        <h3 className="text-[18px] font-medium text-resend-ink mb-2 tracking-resend-tight">No contacts found</h3>
+        <p className="text-[14px] text-resend-charcoal text-center max-w-sm leading-relaxed">
           Try adjusting your search or filters, or add a new contact to get started.
         </p>
       </motion.div>
@@ -76,7 +76,7 @@ export function ContactList({
           <button
             onClick={() => onPageChange(page - 1)}
             disabled={page <= 1}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--bg-card)] border border-[var(--border-hard)] text-[var(--text-primary)] hover:bg-[var(--border-soft)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-resend-full bg-resend-surface-card border border-resend-hairline text-resend-charcoal hover:bg-resend-surface-elevated hover:text-resend-ink disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronLeft size={16} />
           </button>
@@ -96,10 +96,10 @@ export function ContactList({
               <button
                 key={pageNum}
                 onClick={() => onPageChange(pageNum)}
-                className={`w-10 h-10 flex items-center justify-center rounded-full text-[14px] font-medium transition-colors ${
+                className={`w-10 h-10 flex items-center justify-center rounded-resend-full text-[14px] font-mono transition-colors ${
                   page === pageNum
-                    ? 'bg-[var(--text-primary)] text-[var(--bg-page)]'
-                    : 'bg-[var(--bg-card)] border border-[var(--border-hard)] text-[var(--text-primary)] hover:bg-[var(--border-soft)]'
+                    ? 'bg-resend-ink text-resend-canvas'
+                    : 'bg-resend-surface-card border border-resend-hairline text-resend-charcoal hover:bg-resend-surface-elevated hover:text-resend-ink'
                 }`}
               >
                 {pageNum}
@@ -110,7 +110,7 @@ export function ContactList({
           <button
             onClick={() => onPageChange(page + 1)}
             disabled={page >= totalPages}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--bg-card)] border border-[var(--border-hard)] text-[var(--text-primary)] hover:bg-[var(--border-soft)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-resend-full bg-resend-surface-card border border-resend-hairline text-resend-charcoal hover:bg-resend-surface-elevated hover:text-resend-ink disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronRight size={16} />
           </button>

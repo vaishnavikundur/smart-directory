@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Users, Star, Tag, Upload, Download, LogOut, ChevronDown, Search, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { Menu, X, Users, PanelLeftClose } from 'lucide-react';
 import { useAuthStore } from '@/stores/authStore';
 import { useUiStore } from '@/stores/uiStore';
 import { useContacts } from '@/hooks/useContacts';
 import { authApi } from '@/api/auth';
-import { ThemeToggle } from './ThemeToggle';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -38,9 +37,9 @@ function SidebarContent({
 
   return (
     <>
-      <nav className="flex-1 px-4 py-6 space-y-6">
+      <nav className="flex-1 px-4 py-6 space-y-8">
         <div>
-          <p className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+          <p className="text-[12px] font-semibold text-resend-mute uppercase tracking-wider mb-3">
             Filters
           </p>
           <div className="space-y-1">
@@ -51,20 +50,20 @@ function SidebarContent({
                   if (showFavoritesOnly) toggleFavoritesOnly();
                 })
               }
-              className={`w-full text-left px-3 py-1.5 rounded-apple-sm text-[14px] transition-colors ${
+              className={`w-full text-left px-3 py-1.5 rounded-resend-sm text-[14px] transition-colors ${
                 !activeTag && !showFavoritesOnly
-                  ? 'bg-[var(--text-primary)] text-[var(--bg-page)]'
-                  : 'text-[var(--link-color)] hover:bg-[var(--border-soft)]'
+                  ? 'bg-resend-surface-card text-resend-ink border border-resend-hairline-strong'
+                  : 'text-resend-mute hover:text-resend-ink hover:bg-resend-surface-elevated border border-transparent'
               }`}
             >
               All Contacts
             </button>
             <button
               onClick={() => handleClick(toggleFavoritesOnly)}
-              className={`w-full text-left px-3 py-1.5 rounded-apple-sm text-[14px] transition-colors ${
+              className={`w-full text-left px-3 py-1.5 rounded-resend-sm text-[14px] transition-colors ${
                 showFavoritesOnly
-                  ? 'bg-[var(--text-primary)] text-[var(--bg-page)]'
-                  : 'text-[var(--link-color)] hover:bg-[var(--border-soft)]'
+                  ? 'bg-resend-surface-card text-resend-ink border border-resend-hairline-strong'
+                  : 'text-resend-mute hover:text-resend-ink hover:bg-resend-surface-elevated border border-transparent'
               }`}
             >
               Favorites
@@ -73,7 +72,7 @@ function SidebarContent({
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+          <p className="text-[12px] font-semibold text-resend-mute uppercase tracking-wider mb-3">
             Tags
           </p>
           <div className="space-y-1">
@@ -83,10 +82,10 @@ function SidebarContent({
                 onClick={() =>
                   handleClick(() => setActiveTag(activeTag === tag ? null : tag))
                 }
-                className={`w-full text-left px-3 py-1.5 rounded-apple-sm text-[14px] transition-colors ${
+                className={`w-full text-left px-3 py-1.5 rounded-resend-sm text-[14px] transition-colors ${
                   activeTag === tag
-                    ? 'bg-[var(--text-primary)] text-[var(--bg-page)]'
-                    : 'text-[var(--link-color)] hover:bg-[var(--border-soft)]'
+                    ? 'bg-resend-surface-card text-resend-ink border border-resend-hairline-strong'
+                    : 'text-resend-mute hover:text-resend-ink hover:bg-resend-surface-elevated border border-transparent'
                 }`}
               >
                 {tag}
@@ -96,16 +95,16 @@ function SidebarContent({
         </div>
       </nav>
 
-      <div className="p-4 space-y-2 border-t border-[var(--border-hard)]">
+      <div className="p-4 space-y-2 border-t border-resend-hairline bg-resend-canvas">
         <button
           onClick={() => handleClick(() => openModal('import'))}
-          className="w-full text-left px-3 py-2 text-[14px] text-[var(--link-color)] hover:bg-[var(--border-soft)] rounded-apple-sm transition-colors"
+          className="w-full text-left px-3 py-2 text-[14px] text-resend-link hover:text-resend-ink hover:bg-resend-surface-elevated rounded-resend-sm transition-colors"
         >
           Import Contacts
         </button>
         <button
           onClick={() => handleClick(() => openModal('export'))}
-          className="w-full text-left px-3 py-2 text-[14px] text-[var(--link-color)] hover:bg-[var(--border-soft)] rounded-apple-sm transition-colors"
+          className="w-full text-left px-3 py-2 text-[14px] text-resend-link hover:text-resend-ink hover:bg-resend-surface-elevated rounded-resend-sm transition-colors"
         >
           Export Contacts
         </button>
@@ -130,7 +129,6 @@ export function Layout({ children }: LayoutProps) {
   const { data: contactsData } = useContacts({ limit: 1 });
 
   const allTags = ['Family', 'Work', 'Friends', 'VIP', 'Business', 'Personal'];
-
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -148,14 +146,10 @@ export function Layout({ children }: LayoutProps) {
     : 'U';
 
   useEffect(() => {
-    // Push an initial state to trap the back button
     window.history.pushState(null, '', window.location.href);
-
     const handlePopState = () => {
-      // Whenever the user clicks back, push the state again to trap them
       window.history.pushState(null, '', window.location.href);
     };
-
     window.addEventListener('popstate', handlePopState);
     return () => {
       window.removeEventListener('popstate', handlePopState);
@@ -163,28 +157,24 @@ export function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-[var(--bg-page)] text-[var(--text-primary)]">
+    <div className="h-screen flex flex-col overflow-hidden bg-resend-canvas text-resend-ink">
       {/* Global Nav */}
-      <header className="global-nav flex items-center justify-between h-[44px] bg-apple-surface-black text-apple-body-on-dark px-4 lg:px-6 relative z-50">
+      <header className="nav-bar relative z-50">
         <div className="flex items-center gap-4">
-          <button onClick={toggleSidebar} className="lg:hidden text-apple-body-muted hover:text-white transition-colors">
+          <button onClick={toggleSidebar} className="lg:hidden text-resend-mute hover:text-resend-ink transition-colors">
             {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
           <div className="flex items-center gap-2">
-            {/* Apple-like minimalist logo */}
             <Users size={16} />
-            <span className="text-[12px] font-normal tracking-apple-tight hidden sm:block">ContactFlow</span>
+            <span className="font-semibold hidden sm:block">SMART DIRECTORY</span>
           </div>
         </div>
 
-
         <div className="flex items-center gap-4">
-
-          <ThemeToggle />
           <div className="relative">
             <button
               onClick={() => setUserMenuOpen(!userMenuOpen)}
-              className="w-6 h-6 rounded-full bg-apple-surface-chip flex items-center justify-center text-[10px] font-bold text-white hover:opacity-80 transition-opacity"
+              className="w-[32px] h-[32px] rounded-resend-full bg-resend-surface-elevated border border-resend-hairline-strong flex items-center justify-center text-[12px] font-bold text-resend-ink hover:bg-resend-surface-card transition-colors"
             >
               {initials}
             </button>
@@ -194,15 +184,15 @@ export function Layout({ children }: LayoutProps) {
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 5 }}
-                  className="absolute right-0 top-full mt-2 w-48 bg-apple-surface-tile-2 rounded-apple-md shadow-apple-product py-1 z-50 border border-apple-hairline-dark text-white"
+                  className="absolute right-0 top-full mt-2 w-48 bg-resend-surface-card rounded-resend-lg shadow-2xl py-1 z-50 border border-resend-hairline-strong text-resend-ink"
                 >
-                  <div className="px-4 py-2 border-b border-apple-hairline-dark mb-1">
+                  <div className="px-4 py-2 border-b border-resend-hairline-strong mb-1">
                     <p className="text-[14px] font-medium">{user?.name}</p>
-                    <p className="text-[12px] text-apple-body-muted">{user?.email}</p>
+                    <p className="text-[12px] text-resend-mute font-mono mt-1">{user?.email}</p>
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 text-[14px] hover:bg-apple-primary hover:text-white transition-colors"
+                    className="w-full text-left px-4 py-2 text-[14px] hover:bg-resend-surface-elevated transition-colors"
                   >
                     Sign out
                   </button>
@@ -213,14 +203,14 @@ export function Layout({ children }: LayoutProps) {
         </div>
       </header>
 
-      {/* Sub-Nav Frosted */}
-      <div className="sub-nav-frosted border-b border-[var(--border-hard)]">
-        <h2 className="text-[21px] font-semibold tracking-apple-loose">Contacts</h2>
-        <div className="flex items-center gap-4">
-          <span className="text-[14px] text-[var(--text-primary)] hidden sm:block tracking-apple-tighter">
-            {contactsData?.total ?? 0} total
+      {/* Sub-Nav / Header */}
+      <div className="flex items-center justify-between px-4 lg:px-8 py-5 border-b border-resend-hairline bg-resend-canvas">
+        <h2 className="text-[32px] font-normal tracking-resend-tight font-display">Contacts</h2>
+        <div className="flex items-center gap-6">
+          <span className="text-[13px] text-resend-mute hidden sm:block font-mono">
+            {contactsData?.total ?? 0} TOTAL
           </span>
-          <button className="btn-primary" onClick={() => openModal('addContact')}>
+          <button className="button-primary" onClick={() => openModal('addContact')}>
             Add Contact
           </button>
         </div>
@@ -231,11 +221,11 @@ export function Layout({ children }: LayoutProps) {
         <AnimatePresence>
           {sidebarOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-20 lg:hidden"
-              onClick={toggleSidebar}
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               className="fixed inset-0 bg-resend-canvas/80 backdrop-blur-sm z-20 lg:hidden"
+               onClick={toggleSidebar}
             />
           )}
         </AnimatePresence>
@@ -246,7 +236,7 @@ export function Layout({ children }: LayoutProps) {
             initial={false}
             animate={{ width: sidebarOpen ? 260 : 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="h-full bg-[var(--bg-page)] border-r border-[var(--border-hard)] flex flex-col overflow-hidden"
+            className="h-full bg-resend-canvas border-r border-resend-hairline flex flex-col overflow-hidden"
           >
             <div className="w-[260px] h-full flex flex-col overflow-y-auto">
               <SidebarContent
@@ -264,7 +254,7 @@ export function Layout({ children }: LayoutProps) {
           {sidebarOpen ? (
             <button
               onClick={toggleSidebar}
-              className="absolute -right-3 top-4 z-30 w-6 h-6 rounded-full bg-[var(--bg-card)] border border-[var(--border-hard)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-secondary)] transition-all duration-200 shadow-sm"
+              className="absolute -right-3 top-6 z-30 w-6 h-6 rounded-resend-full bg-resend-surface-elevated border border-resend-hairline-strong flex items-center justify-center text-resend-mute hover:text-resend-ink hover:bg-resend-surface-card transition-colors shadow-sm"
               title="Collapse sidebar"
             >
               <PanelLeftClose size={12} />
@@ -272,10 +262,10 @@ export function Layout({ children }: LayoutProps) {
           ) : (
             <button
               onClick={toggleSidebar}
-              className="ml-2 mt-3 z-30 w-9 h-9 rounded-apple-sm bg-[var(--bg-card)] border border-[var(--border-hard)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-soft)] transition-all duration-200 shadow-sm"
+              className="ml-4 mt-6 z-30 w-8 h-8 rounded-resend-md bg-resend-surface-elevated border border-resend-hairline-strong flex items-center justify-center text-resend-mute hover:text-resend-ink hover:bg-resend-surface-card transition-colors shadow-sm"
               title="Expand sidebar"
             >
-              <Menu size={18} />
+              <Menu size={16} />
             </button>
           )}
         </div>
@@ -288,7 +278,7 @@ export function Layout({ children }: LayoutProps) {
               animate={{ x: 0 }}
               exit={{ x: -260 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="absolute z-20 w-[260px] h-full bg-[var(--bg-page)] border-r border-[var(--border-hard)] flex flex-col overflow-y-auto lg:hidden"
+              className="absolute z-20 w-[260px] h-full bg-resend-canvas border-r border-resend-hairline flex flex-col overflow-y-auto lg:hidden"
             >
               <SidebarContent
                 activeTag={activeTag}
@@ -304,7 +294,7 @@ export function Layout({ children }: LayoutProps) {
         </AnimatePresence>
 
         {/* Main content */}
-        <main id="main-scroll-container" className="flex-1 overflow-y-auto bg-[var(--bg-page)] relative z-10">
+        <main id="main-scroll-container" className="flex-1 overflow-y-auto bg-resend-canvas relative z-10 p-4 lg:p-8">
           {children}
         </main>
       </div>
