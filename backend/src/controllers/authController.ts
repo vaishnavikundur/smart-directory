@@ -53,7 +53,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: config.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       path: '/',
     });
@@ -102,7 +102,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: config.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: '/',
     });
@@ -167,12 +167,20 @@ export async function refresh(req: Request, res: Response, next: NextFunction): 
     res.cookie('refreshToken', tokens.refreshToken, {
       httpOnly: true,
       secure: config.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: '/',
     });
 
-    res.json({ accessToken: tokens.accessToken });
+    res.json({
+      user: {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        preferences: user.preferences,
+      },
+      accessToken: tokens.accessToken
+    });
   } catch (error) {
     next(error);
   }
@@ -189,7 +197,7 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
     res.clearCookie('refreshToken', {
       httpOnly: true,
       secure: config.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
       path: '/',
     });
 
